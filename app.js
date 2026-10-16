@@ -2,11 +2,12 @@
 //  · 시안의 템플릿({{ }} · sc-for · sc-if)과 renderVals() 를 그대로 쓴다 → 시안을 바꾸면 파일만 갈아 끼우면 된다
 //  · 사용자는 사진·글·테마를 바꾸고, 스티커를 끌어 옮기고, PNG / GIF 로 저장한다
 (() => {
-  const W = 1600, H = 900;
+  let W = 1600, H = 900;   // 틀마다 다르다 (시안의 $preview 크기)
+  const TEMPLATES = { diary: ["templates/diary.dc.html", "다이어리 (16:9)"], os: ["templates/os.dc.html", "민트 OS 창 (16:9)"], square: ["templates/square.dc.html", "정사각 (1:1)"] };
   const PHOTO_SLOTS = { "main-photo": "메인 사진 (두 사람)", "main-cutout": "튀어나오는 컷아웃 (투명 PNG · 선택)", "id-photo-a": "증명사진 ①", "id-photo-b": "증명사진 ②" };
   const LS = "dopa_pairframe_v1";
   const $ = (s, r = document) => r.querySelector(s);
-  const S = { tpl: null, Comp: null, inst: null, f: 0, animate: true, theme: "딸기우유", filled: true, data: null, stickers: null, photos: {}, sel: -1, busy: false };
+  const S = { tplKey: "diary", tpl: null, Comp: null, inst: null, f: 0, animate: true, theme: "딸기우유", filled: true, data: null, stickers: null, stickersBy: {}, photos: {}, sel: -1, busy: false, slots: {} };
 
   // ── 템플릿 실행기 ──
   const get = (scope, path) => { const p = String(path).trim(); if (p === "true") return true; if (p === "false") return false; return p.split(".").reduce((o, k) => (o == null ? undefined : o[k]), scope); };
@@ -63,11 +64,15 @@
     class DCLogic { constructor(props) { this.props = props; } setState(fn) { this.state = Object.assign({}, this.state, typeof fn === "function" ? fn(this.state) : fn); } }
     const React = { createRef: () => ({ current: null }) };
     const Comp = new Function("DCLogic", "React", patched + "\nreturn Component;")(DCLogic, React);
+    try { const pr = JSON.parse(doc.querySelector("script[data-dc-script]").getAttribute("data-props") || "{}").$preview || {}; W = pr.width || 1600; H = pr.height || 900; } catch (e) { W = 1600; H = 900; }
+    S.slots = {}; xdc.querySelectorAll("[data-slot]").forEach((n) => { S.slots[n.getAttribute("data-slot")] = true; });
+    window.PF_DEF = null; window.PF_SS = null;   // 틀을 바꾸면 그 틀의 기본 글·스티커를 다시 읽는다
     S.tpl = xdc; S.Comp = Comp;
     S.inst = new Comp({ theme: S.theme, filled: true, animate: true, showStickerSlots: true }); S.inst.state = { f: 0 };
     S.inst.renderVals();   // 기본 글·스티커를 읽어 온다
-    if (!S.data) S.data = JSON.parse(JSON.stringify(window.PF_DEF));
-    if (!S.stickers) S.stickers = JSON.parse(JSON.stringify(window.PF_SS));
+    const def = JSON.parse(JSON.stringify(window.PF_DEF));
+    if (!S.data) S.data = def; else Object.keys(def).forEach((k) => { if (!(k in S.data)) S.data[k] = def[k]; });   // 글은 틀끼리 같이 쓴다
+    S.stickers = S.stickersBy[S.tplKey] || JSON.parse(JSON.stringify(window.PF_SS)); S.stickersBy[S.tplKey] = S.stickers;   // 스티커 배치는 틀마다 따로
   }
 
   function render() {
@@ -79,10 +84,45 @@
     const out = []; S.tpl.childNodes.forEach((c) => build(c, vals, false, out));
     const fresh = document.createElement("div"); fresh.id = "canvas"; out.forEach((n) => fresh.appendChild(n));
     morphdom($("#canvas"), fresh);
+    fitText();
+  }
+  // 글이 칸을 넘치면 글자를 줄인다 (10/17 자기야: 캡션·체크리스트·노래 제목·채팅이 잘림) · 최소 원래 크기의 55%
+  function fitText() {
+    const r = root(); if (!r) return;
+    r.querySelectorAll("*").forEach((el) => {
+      if (!el.firstChild || el.children.length > 2) return;
+      const st = el.style; if (!(st.overflow === "hidden" || st.textOverflow === "ellipsis" || st.whiteSpace === "nowrap")) return;
+      if (el.scrollWidth <= el.clientWidth + 1 && el.scrollHeight <= el.clientHeight + 1) return;
+      const base = parseFloat(getComputedStyle(el).fontSize) || 14; let fs = base;
+      while (fs > base * 0.55 && (el.scrollWidth > el.clientWidth + 1 || el.scrollHeight > el.clientHeight + 1)) { fs -= base * 0.05; el.style.fontSize = fs + "px"; }
+    });
+    const chat = r.querySelector('[data-slot="chat"]');
+    if (chat && chat.scrollHeight > chat.clientHeight + 1) {   // 말풍선이 길어 채팅 칸을 넘치면 말풍선 글자를 같이 줄인다
+      const bs = [...chat.querySelectorAll("div,span")].filter((n) => n.firstChild && n.firstChild.nodeType === 3 && n.textContent.trim().length > 6);
+      let k = 1; while (k > 0.6 && chat.scrollHeight > chat.clientHeight + 1) { k -= 0.06; bs.forEach((n) => { if (!n.dataset.fs0) n.dataset.fs0 = parseFloat(getComputedStyle(n).fontSize); n.style.fontSize = (n.dataset.fs0 * k) + "px"; }); }
+    }
+  }
+  // 저장용 글꼴: 그림에 실제로 쓰인 글자만 담은 작은 글꼴을 구글 폰트에서 받아 넣는다 (text= 옵션) → 저장할 때 글꼴이 빠지지 않는다 (10/17: 저장본 제목이 가는 글꼴로 나옴)
+  const FAMS = ["Black+Han+Sans", "Pacifico", "Gowun+Batang:wght@400;700", "Silkscreen"];
+  let fontCache = { key: "", css: "" };
+  async function fontCSS() {
+    const r = root(); const chars = [...new Set((r.textContent + "OURLITTLEOVEGDAMYIRSNC0123456789·♥×abcdefghijklmnopqrstuvwxyz").replace(/\s/g, ""))].join("");
+    if (fontCache.key === chars) return fontCache.css;
+    const toData = async (u) => { const b = await (await fetch(u)).blob(); return await new Promise((ok) => { const fr = new FileReader(); fr.onload = () => ok(fr.result); fr.readAsDataURL(b); }); };
+    let out = "";
+    for (const fam of FAMS) {
+      try {
+        let css = await (await fetch(`https://fonts.googleapis.com/css2?family=${fam}&text=${encodeURIComponent(chars)}&display=swap`)).text();
+        const urls = [...css.matchAll(/url\((https:[^)]+)\)/g)].map((m) => m[1]);
+        for (const u of urls) css = css.replace(u, await toData(u));
+        out += css + "\n";
+      } catch (e) {}
+    }
+    fontCache = { key: chars, css: out }; return out;
   }
 
   // ── 화면 맞춤 ──
-  function fit() { const box = $("#stageBox"); const sc = box.clientWidth / W; $("#stage").style.transform = `scale(${sc})`; box.style.height = `${H * sc}px`; S.scale = sc; }
+  function fit() { const box = $("#stageBox"); const stg = $("#stage"); stg.style.width = W + "px"; stg.style.height = H + "px"; const sc = box.clientWidth / W; $("#stage").style.transform = `scale(${sc})`; box.style.height = `${H * sc}px`; S.scale = sc; }
 
   // ── 스티커 끌기 ──
   function setupDrag() {
@@ -128,7 +168,7 @@
     const todo = $("#fTodo"); todo.textContent = "";
     (S.data.todos || []).forEach((td) => { const row = document.createElement("div"); row.className = "todorow"; const cb = document.createElement("input"); cb.type = "checkbox"; cb.checked = Boolean(td[1]); cb.addEventListener("change", () => { td[1] = cb.checked ? 1 : 0; render(); save(); }); const t = document.createElement("input"); t.value = td[0]; t.maxLength = 20; t.addEventListener("input", () => { td[0] = t.value; render(); save(); }); row.append(cb, t); todo.appendChild(row); });
     const ph = $("#fPhoto"); ph.textContent = "";
-    Object.entries(PHOTO_SLOTS).forEach(([k, l]) => {
+    Object.entries(PHOTO_SLOTS).filter(([k]) => S.slots[k]).forEach(([k, l]) => {
       const lab = document.createElement("label"); lab.className = "photo"; lab.innerHTML = `<span>${l}</span>`;
       const inp = document.createElement("input"); inp.type = "file"; inp.accept = "image/*";
       inp.addEventListener("change", () => { const f = inp.files && inp.files[0]; if (!f) return; const r = new FileReader(); r.onload = () => { S.photos[k] = r.result; render(); save(); buildPanel(); }; r.readAsDataURL(f); });
@@ -145,14 +185,14 @@
   }
 
   // ── 저장 ──
-  function save() { try { localStorage.setItem(LS, JSON.stringify({ theme: S.theme, data: S.data, stickers: S.stickers })); } catch (e) {} try { localStorage.setItem(LS + "_ph", JSON.stringify(S.photos)); } catch (e) {} }
-  function load() { try { const v = JSON.parse(localStorage.getItem(LS) || "null"); if (v) { S.theme = v.theme || S.theme; S.data = v.data; S.stickers = v.stickers; } } catch (e) {} try { S.photos = JSON.parse(localStorage.getItem(LS + "_ph") || "{}") || {}; } catch (e) {} }
+  function save() { try { localStorage.setItem(LS, JSON.stringify({ theme: S.theme, data: S.data, tplKey: S.tplKey, stickersBy: S.stickersBy })); } catch (e) {} try { localStorage.setItem(LS + "_ph", JSON.stringify(S.photos)); } catch (e) {} }
+  function load() { try { const v = JSON.parse(localStorage.getItem(LS) || "null"); if (v) { S.theme = v.theme || S.theme; S.data = v.data; S.tplKey = TEMPLATES[v.tplKey] ? v.tplKey : "diary"; S.stickersBy = v.stickersBy || (v.stickers ? { diary: v.stickers } : {}); } } catch (e) {} try { S.photos = JSON.parse(localStorage.getItem(LS + "_ph") || "{}") || {}; } catch (e) {} }
   const root = () => $("#canvas [data-root]");
   const status = (t) => { $("#status").textContent = t || ""; };
   async function exportPng() {
     if (S.busy) return; S.busy = true; const sel = S.sel; S.sel = -1; S.f = 29; render();
     status("이미지를 만드는 중…");
-    try { await document.fonts.ready; const url = await htmlToImage.toPng(root(), { width: W, height: H, pixelRatio: 1, cacheBust: false }); download(url, "dopa-pairframe.png"); status("PNG를 저장했어요"); }
+    try { await document.fonts.ready; const fontEmbedCSS = await fontCSS(); const url = await htmlToImage.toPng(root(), { width: W, height: H, pixelRatio: 1, cacheBust: false, ...(fontEmbedCSS ? { fontEmbedCSS } : {}) }); download(url, "dopa-pairframe.png"); status("PNG를 저장했어요"); }
     catch (e) { status("저장에 실패했어요. 다시 눌러 주세요"); console.error(e); }
     S.sel = sel; S.busy = false; render();
   }
@@ -160,11 +200,11 @@
     if (S.busy) return; S.busy = true; const sel = S.sel; S.sel = -1;
     try {
       const { GIFEncoder, quantize, applyPalette } = await import("https://cdn.jsdelivr.net/npm/gifenc@1.0.3/dist/gifenc.esm.js");
-      await document.fonts.ready;   // 글꼴은 프레임마다 PNG와 같은 방식으로 넣는다 (getFontEmbedCSS 가 빈 값을 돌려줘 GIF 제목 글꼴이 빠졌다)
-      const gw = 800, gh = 450; const gif = GIFEncoder();
+      await document.fonts.ready; S.f = 29; render(); const fontEmbedCSS = await fontCSS();   // 마지막 장면의 글자로 한 번만 받아 30프레임에 같이 쓴다
+      const gw = W >= H ? 800 : 640, gh = Math.round(gw * H / W); const gif = GIFEncoder();
       for (let f = 0; f < 30; f++) {
         S.f = f; render(); status(`GIF 만드는 중… ${f + 1}/30 · 30초쯤 걸려요`);
-        const cv = await htmlToImage.toCanvas(root(), { width: W, height: H, canvasWidth: gw, canvasHeight: gh, pixelRatio: 1, cacheBust: false });
+        const cv = await htmlToImage.toCanvas(root(), { width: W, height: H, canvasWidth: gw, canvasHeight: gh, pixelRatio: 1, cacheBust: false, ...(fontEmbedCSS ? { fontEmbedCSS } : {}) });
         const ctx = cv.getContext("2d"); const { data } = ctx.getImageData(0, 0, gw, gh);
         const pal = quantize(data, 256); const idx = applyPalette(data, pal); gif.writeFrame(idx, gw, gh, { palette: pal, delay: 200 });
       }
@@ -176,13 +216,15 @@
 
   async function init() {
     load();
-    await loadTemplate("templates/diary.dc.html");
+    await loadTemplate(TEMPLATES[S.tplKey][0]);
     $("#theme").value = S.theme;
+    const tp = $("#tpl"); Object.entries(TEMPLATES).forEach(([k, [, l]]) => { const o = document.createElement("option"); o.value = k; o.textContent = l; tp.appendChild(o); }); tp.value = S.tplKey;
+    tp.addEventListener("change", async () => { S.tplKey = tp.value; S.sel = -1; await loadTemplate(TEMPLATES[S.tplKey][0]); fit(); buildPanel(); render(); syncTools(); save(); });
     $("#theme").addEventListener("change", (e) => { S.theme = e.target.value; render(); save(); });
     $("#anim").addEventListener("change", (e) => { S.animate = e.target.checked; render(); });
     $("#png").addEventListener("click", exportPng); $("#gif").addEventListener("click", exportGif);
     $("#reset").addEventListener("click", () => { const ok = $("#resetOk"); ok.hidden = !ok.hidden; });
-    $("#resetYes").addEventListener("click", () => { S.data = JSON.parse(JSON.stringify(window.PF_DEF)); S.stickers = JSON.parse(JSON.stringify(window.PF_SS)); S.photos = {}; S.sel = -1; save(); buildPanel(); render(); $("#resetOk").hidden = true; });
+    $("#resetYes").addEventListener("click", () => { S.data = JSON.parse(JSON.stringify(window.PF_DEF)); S.stickers = JSON.parse(JSON.stringify(window.PF_SS)); S.stickersBy = { [S.tplKey]: S.stickers }; S.photos = {}; S.sel = -1; save(); buildPanel(); render(); $("#resetOk").hidden = true; });
     document.querySelectorAll("[data-act]").forEach((b) => b.addEventListener("click", () => stAct(b.dataset.act)));
     buildPanel(); buildDrawer(); setupDrag(); fit(); window.addEventListener("resize", fit);
     render(); syncTools();
