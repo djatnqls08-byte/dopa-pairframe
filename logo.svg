@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- 배경을 위한 딥 다크 그라데이션 -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#140E1B" />
+      <stop offset="100%" stop-color="#0A0A0C" />
+    </linearGradient>
+  </defs>
+
+  <!-- 1. 앱 아이콘 배경 (모서리가 둥근 스쿼클 형태) -->
+  <rect width="512" height="512" rx="115" fill="url(#bgGradient)"/>
+
+  <!-- 2. 네온 퍼플 글리치 그림자 (살짝 어긋난 효과로 힙한 느낌 추가) -->
+  <g transform="translate(12, 12)">
+    <!-- 왼쪽 뿔 그림자 -->
+    <path d="M146 170 C 110 100, 80 70, 70 60 C 110 90, 140 130, 166 150 Z" fill="#8B00FF" opacity="0.8"/>
+    <!-- 오른쪽 뿔 그림자 -->
+    <path d="M366 170 C 402 100, 432 70, 442 60 C 402 90, 372 130, 346 150 Z" fill="#8B00FF" opacity="0.8"/>
+    <!-- 얼굴 그림자 -->
+    <circle cx="256" cy="276" r="145" fill="#8B00FF" opacity="0.8"/>
+  </g>
+
+  <!-- 3. 메인 악동 얼굴 (일렉트릭 네온 핑크) -->
+  <g>
+    <!-- 왼쪽 뿔 -->
+    <path d="M146 170 C 110 100, 80 70, 70 60 C 110 90, 140 130, 166 150 Z" fill="#FF0055"/>
+    <!-- 오른쪽 뿔 -->
+    <path d="M366 170 C 402 100, 432 70, 442 60 C 402 90, 372 130, 346 150 Z" fill="#FF0055"/>
+    <!-- 메인 얼굴형 -->
+    <circle cx="256" cy="276" r="145" fill="#FF0055"/>
+
+    <!-- 비대칭 눈: 왼쪽은 X자 모양 -->
+    <path d="M 186 226 L 226 266 M 226 226 L 186 266" stroke="#0A0A0C" stroke-width="22" stroke-linecap="round"/>
+    <!-- 비대칭 눈: 오른쪽은 날카롭게 휘어진 눈매 -->
+    <path d="M 286 246 Q 316 220 346 246" fill="none" stroke="#0A0A0C" stroke-width="22" stroke-linecap="round"/>
+
+    <!-- 씩 웃는 입꼬리와 악동 송곳니 하나 -->
+    <path d="M 196 326 Q 256 386 336 306" fill="none" stroke="#0A0A0C" stroke-width="22" stroke-linecap="round"/>
+    <path d="M 310 336 L 316 366 L 332 312" fill="#0A0A0C"/>
+  </g>
+
+  <!-- 4. 도파민 스파크 (십자 별 모양 디테일) -->
+  <path d="M 420 150 L 426 126 L 450 120 L 426 114 L 420 90 L 414 114 L 390 120 L 414 126 Z" fill="#FF0055"/>
+  <path d="M 100 390 L 104 374 L 120 370 L 104 366 L 100 350 L 96 366 L 80 370 L 96 374 Z" fill="#8B00FF"/>
+</svg>

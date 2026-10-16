@@ -1,6 +1,6 @@
 // 내 컴퓨터에서 확인할 때만 쓰는 정적 서버 (배포에는 필요 없음)
 const http = require("http"), fs = require("fs"), path = require("path");
-const T = { ".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".json": "application/json", ".webp": "image/webp", ".png": "image/png", ".css": "text/css" };
+const T = { ".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".json": "application/json", ".webp": "image/webp", ".png": "image/png", ".css": "text/css", ".svg": "image/svg+xml" };
 http.createServer((q, r) => {
   let p = decodeURIComponent(q.url.split("?")[0]); if (p === "/") p = "/index.html";
   const f = path.join(__dirname, path.normalize(p).replace(/^([\/])+/, ""));
