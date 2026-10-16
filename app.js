@@ -32,6 +32,7 @@
       if (a.name === "src" && /^stickers\/.+\.png$/.test(v)) v = v.replace(/\.png$/, ".webp");
       el.setAttribute(a.name, v);
     }
+    if (el.getAttribute("data-wm") && !S.busy) el.style.display = "none";   // 도파 워터마크는 저장할 때만 (10/17 자기야)
     const slot = el.getAttribute("data-slot") || "";
     if (el.getAttribute("data-root")) el.setAttribute("style", (el.getAttribute("style") || "") + ";" + themeVars());
     if (/^sticker-\d+$/.test(slot)) {   // 스티커: 끌어 옮길 수 있게
