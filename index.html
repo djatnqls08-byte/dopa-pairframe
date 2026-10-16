@@ -40,8 +40,22 @@ header p { margin:0; color:var(--muted); font-size:.95rem; line-height:1.4; padd
 .panel .card[hidden] { display:none; }
 @media (max-width: 980px) {
   .editor { grid-template-columns:minmax(0,1fr); }
-  .viewer { top:0; background:var(--bg); padding-block:8px; }
+  /* 폰: 그림만 위에 고정, 버튼은 같이 스크롤 (10/17 자기야: 그림+버튼이 화면 절반을 차지했다) */
+  .viewer { display:contents; }
+  #stageBox { position:sticky; top:0; z-index:6; box-shadow:0 6px 18px rgba(122,34,68,.18); }
   .tabs { position:static; }
+  .wrap { gap:12px; padding-block:12px 90px; }
+  header h1 { font-size:1.35rem; }
+  header h1 img { width:28px !important; height:28px !important; border-radius:8px !important; }
+  header p { font-size:.8rem; padding-top:0; }
+  .bar { gap:8px; }
+  .bar select { flex:1 1 40%; padding:9px 10px; font-size:.88rem; }
+  .bar .btn.main { flex:1 1 40%; padding:11px 8px; font-size:.9rem; }
+  .bar label { font-size:.88rem; }
+  .bar #reset { padding:8px 12px; font-size:.82rem; }
+  .long { display:none; }
+  #stTools { position:fixed; left:max(8px, env(safe-area-inset-left,0px)); right:max(8px, env(safe-area-inset-right,0px)); bottom:max(8px, env(safe-area-inset-bottom,0px)); z-index:30; box-shadow:0 8px 24px rgba(122,34,68,.25); justify-content:center; }
+  #stTools span { display:none; }
 }
 .card { background:var(--card); border:2px solid var(--line); border-radius:16px; padding:16px; display:flex; flex-direction:column; gap:10px; min-width:0; }
 .card h2 { margin:0; font-size:1.05rem; font-weight:800; color:var(--accent); letter-spacing:-.3px; }
@@ -80,7 +94,7 @@ footer a { color:var(--accent2); font-weight:700; }
     <select id="theme" aria-label="색 테마"><option>딸기우유</option><option>라벤더</option><option>체리</option></select>
     <label><input type="checkbox" id="anim" checked> 움직임</label>
     <button type="button" class="btn main" id="png">PNG 저장</button>
-    <button type="button" class="btn main" id="gif">GIF 저장 (움직이는 버전)</button>
+    <button type="button" class="btn main" id="gif">GIF 저장<span class="long"> (움직이는 버전)</span></button>
     <button type="button" class="btn" id="reset">처음으로</button>
     <span id="resetOk" hidden>내가 넣은 사진·글·스티커가 모두 지워져요 <button type="button" class="btn" id="resetYes">지우기</button></span>
     <span id="status" role="status"></span>
