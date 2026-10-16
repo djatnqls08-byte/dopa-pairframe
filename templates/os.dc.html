@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Pacifico&family=Gowun+Batang:wght@400;700&family=Silkscreen&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#f3e9ee}a{color:#d6336c}a:hover{color:#a3204f}</style>
+</helmet>
+<div ref="{{ rootRef }}" data-frame="16x9-v2" style="--bg:#fff3f7;--paper:#fffaf2;--grid:#ffd9e5;--p1:#ffd3e1;--p2:#ff9fc0;--p3:#e8457c;--ink:#7a2244;--sub:#ffe7a3;--mint:#8fe3cb;--berry:#ff5d86;--leaf:#79c78a;--sh:rgba(122,34,68,.22);position:relative;width:1600px;height:900px;overflow:hidden;background-color:var(--bg);background-image:radial-gradient(var(--p1) 2.5px,transparent 3px),linear-gradient(var(--grid) 1.5px,transparent 1.5px),linear-gradient(90deg,var(--grid) 1.5px,transparent 1.5px);background-size:32px 32px,32px 32px,32px 32px;background-position:16px 16px,0 0,0 0;font-family:'Gowun Batang',serif;color:var(--ink)">
+
+  <div style="position:absolute;left:0;right:0;top:0;height:12px;background:repeating-linear-gradient(90deg,var(--p3) 0 14px,var(--paper) 14px 28px)"></div>
+  <div style="position:absolute;left:0;right:0;top:12px;height:12px;background:radial-gradient(circle at 10px 0,var(--paper) 9px,transparent 10px);background-size:20px 12px"></div>
+  <div style="position:absolute;left:0;right:0;bottom:0;height:46px;background:var(--p1)"></div>
+  <div style="position:absolute;left:0;right:0;bottom:46px;height:16px;background:radial-gradient(circle at 12px 16px,var(--p1) 11px,transparent 12px);background-size:24px 16px"></div>
+  <div style="position:absolute;left:0;right:0;bottom:50px;height:6px;background:radial-gradient(circle,#fff 2px,transparent 2.5px);background-size:24px 6px;background-position:12px 0"></div>
+  <div style="position:absolute;left:0;right:0;bottom:14px;height:14px;background-image:repeating-conic-gradient(var(--p3) 0 25%,var(--paper) 0 50%);background-size:14px 14px;opacity:.55"></div>
+  <div style="position:absolute;left:12px;top:250px;writing-mode:vertical-rl;font-family:'Silkscreen',monospace;font-size:12px;letter-spacing:5px;color:var(--p3)">OUR LITTLE LOVE LOG ♥ VOL.01 ♥ SINCE 2016</div>
+
+  <div data-slot="title" style="position:absolute;left:44px;top:26px;width:820px;height:170px">
+    <div style="position:absolute;left:0;top:0;font-family:'Black Han Sans',sans-serif;font-size:100px;line-height:1;letter-spacing:-1px;color:var(--p3);white-space:nowrap;text-shadow:4px 0 0 #fff,-4px 0 0 #fff,0 4px 0 #fff,0 -4px 0 #fff,3px 3px 0 #fff,-3px 3px 0 #fff,3px -3px 0 #fff,-3px -3px 0 #fff,9px 9px 0 var(--p2)">{{ titleTyped }}<span style="display:inline-block;width:7px;height:80px;margin-left:8px;vertical-align:-6px;background:var(--p3);opacity:{{ caretOp }}"></span></div>
+    <div style="position:absolute;left:380px;top:66px;transform:rotate(-8deg);font-family:'Pacifico',cursive;font-size:84px;line-height:1.2;color:#fff;white-space:nowrap;text-shadow:3px 0 0 var(--p3),-3px 0 0 var(--p3),0 3px 0 var(--p3),0 -3px 0 var(--p3),2px 2px 0 var(--p3),-2px 2px 0 var(--p3),2px -2px 0 var(--p3),-2px -2px 0 var(--p3),7px 7px 0 var(--mint)">{{ script }}</div>
+  </div>
+  <div style="position:absolute;left:900px;top:114px;display:flex;gap:8px;align-items:center;font-family:'Silkscreen',monospace;font-size:12px;letter-spacing:2px;transform:rotate(-1.5deg)">
+    <span style="background:var(--p3);color:#fff;padding:3px 10px;border-radius:20px">OUR LITTLE LOVE LOG</span>
+    <span style="background:#fff;border:1.5px solid var(--ink);padding:2px 8px;border-radius:20px">TALK ME UP ♡</span>
+  </div>
+  <div style="position:absolute;left:770px;top:34px;width:74px;height:46px;background:#fff;border:2.5px solid var(--ink);border-radius:22px;display:flex;align-items:center;justify-content:center;gap:6px;transform:rotate(8deg);box-shadow:3px 3px 0 var(--p2)">
+    <span style="width:9px;height:9px;border-radius:50%;background:var(--p3);opacity:{{ dot1 }}"></span><span style="width:9px;height:9px;border-radius:50%;background:var(--p3);opacity:{{ dot2 }}"></span><span style="width:9px;height:9px;border-radius:50%;background:var(--p3);opacity:{{ dot3 }}"></span>
+  </div>
+
+  <div style="position:absolute;left:880px;top:40px;width:470px;height:62px;transform:rotate(-1.5deg);background:var(--paper);border:2.5px solid var(--ink);border-radius:10px;box-shadow:5px 5px 0 var(--p2),0 8px 18px var(--sh);display:flex;align-items:center;gap:8px;padding:0 10px;box-sizing:border-box">
+    <span style="font-family:'Gowun Batang',serif;font-weight:700;font-size:14px;background:var(--p3);color:#fff;padding:5px 10px;border-radius:20px;white-space:nowrap">원하는 관계</span>
+    <div data-slot="relation" style="flex:1;min-width:0;height:36px;border:2px solid var(--p2);border-radius:20px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 12px;font-family:'Gowun Batang',serif;font-weight:700;font-size:20px;color:var(--p3);white-space:nowrap;overflow:hidden">
+      <span style="width:11px;height:11px;border:2.5px solid var(--p3);border-radius:50%;flex:none"></span>{{ relation }}
+    </div>
+    <span style="width:36px;height:36px;border-radius:10px;background:var(--mint);display:flex;align-items:center;justify-content:center;font-size:17px;border:2px solid var(--ink)">♥</span>
+  </div>
+  <div style="position:absolute;left:1180px;top:22px;width:96px;height:26px;transform:rotate(10deg);background:repeating-linear-gradient(90deg,var(--mint) 0 8px,#e6fff7 8px 16px);opacity:.92"></div>
+
+  <div style="position:absolute;left:66px;top:212px;width:480px;height:580px;transform:rotate(-4deg);background:#fff;border-radius:6px;box-shadow:8px 10px 0 var(--p1),0 16px 30px var(--sh)">
+    <div data-slot="main-photo" style="position:absolute;left:20px;top:20px;width:440px;height:460px;border-radius:4px;overflow:hidden;background:var(--p1)">
+      <div style="position:absolute;inset:0;background:linear-gradient(165deg,var(--p1),var(--p2))"></div>
+      <div style="position:absolute;inset:0;background-image:radial-gradient(#fff 2px,transparent 2.5px);background-size:22px 22px;opacity:.5"></div>
+      <sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;inset:10px;border:3px dashed #fff;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:40px;gap:8px">
+          <span style="font-family:'Gowun Batang',serif;font-weight:700;font-size:24px;color:var(--ink);background:#fff;padding:4px 14px;border-radius:20px">+ 두 사람 메인 사진</span>
+          <span style="font-family:'Silkscreen',monospace;font-size:12px;color:var(--ink)">440 × 460 · 배경 레이어</span>
+        </div>
+      </sc-if>
+    </div>
+    <div data-slot="main-cutout" style="position:absolute;left:20px;top:-60px;width:440px;height:540px;overflow:hidden;clip-path:inset(0 0 60px 0)">
+      <sc-if value="{{ filled }}" hint-placeholder-val="{{ true }}">
+        <div style="position:absolute;left:52px;top:196px;width:180px;height:400px;border-radius:90px 90px 0 0;background:linear-gradient(180deg,#fff,var(--p1));box-shadow:0 0 0 7px #fff,0 0 0 9.5px var(--ink)"></div>
+        <div style="position:absolute;left:92px;top:76px;width:100px;height:100px;border-radius:50%;background:linear-gradient(180deg,#fff,var(--p1));box-shadow:0 0 0 7px #fff,0 0 0 9.5px var(--ink)"></div>
+        <div style="position:absolute;left:214px;top:176px;width:188px;height:420px;border-radius:94px 94px 0 0;background:linear-gradient(180deg,#fff,var(--sub));box-shadow:0 0 0 7px #fff,0 0 0 9.5px var(--ink)"></div>
+        <div style="position:absolute;left:254px;top:50px;width:106px;height:106px;border-radius:50%;background:linear-gradient(180deg,#fff,var(--sub));box-shadow:0 0 0 7px #fff,0 0 0 9.5px var(--ink)"></div>
+        <svg viewBox="0 0 24 22" style="position:absolute;left:198px;top:120px;width:40px"><path d="M12 21C5 15 1 11 1 6.5 1 3 3.6 1 6.5 1c2.3 0 4.3 1.3 5.5 3.3C13.2 2.3 15.2 1 17.5 1 20.4 1 23 3 23 6.5 23 11 19 15 12 21z" fill="var(--p3)" stroke="#fff" stroke-width="2"></path></svg>
+        <div style="position:absolute;left:168px;top:300px;font-family:'Silkscreen',monospace;font-size:11px;color:var(--p3);letter-spacing:1px;background:#fff;padding:2px 8px;border-radius:10px">EXAMPLE · 컷아웃 PNG</div>
+      </sc-if>
+      <sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;left:60px;top:10px;width:320px;height:230px;border:3px dashed var(--p3);border-radius:160px 160px 20px 20px;display:flex;align-items:center;justify-content:center;font-family:'Gowun Batang',serif;font-weight:700;font-size:17px;color:var(--p3);background:rgba(255,255,255,.4)">컷아웃 PNG (선택 · 위로 튀어나옴)</div>
+      </sc-if>
+    </div>
+    <div data-slot="caption" style="position:absolute;left:24px;right:24px;top:494px;height:70px;display:flex;align-items:center;justify-content:space-between;gap:10px">
+      <span style="font-family:'Gowun Batang',serif;font-weight:700;font-size:26px;white-space:nowrap;overflow:hidden">{{ caption }}</span>
+      <span style="font-family:'Pacifico',cursive;font-size:22px;color:var(--p3);flex:none">xoxo</span>
+    </div>
+  </div>
+  <div style="position:absolute;left:52px;top:200px;width:128px;height:32px;transform:rotate(-30deg);background:repeating-linear-gradient(90deg,var(--sub) 0 10px,#fff6d6 10px 20px);opacity:.92"></div>
+  <div style="position:absolute;left:446px;top:752px;width:128px;height:32px;transform:rotate(-24deg);background:repeating-linear-gradient(45deg,var(--p3) 0 6px,var(--p1) 6px 12px);opacity:.88"></div>
+  <div style="position:absolute;left:330px;top:752px;width:118px;height:118px;border-radius:50%;border:3px dashed var(--p3);transform:rotate(-14deg);display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(255,255,255,.6);color:var(--p3)">
+    <span style="font-family:'Silkscreen',monospace;font-size:10px;letter-spacing:2px">LOVE · LOG</span>
+    <span style="font-family:'Black Han Sans';font-size:30px;line-height:1.1">2026</span>
+    <span style="font-family:'Silkscreen',monospace;font-size:9px;letter-spacing:2px">♥ AIR MAIL ♥</span>
+  </div>
+
+  <svg viewBox="0 0 200 60" style="position:absolute;left:420px;top:172px;width:150px;overflow:visible"><path d="M4 50C40 10 80 60 120 24S180 20 196 6" fill="none" stroke="var(--p3)" stroke-width="2.5" stroke-dasharray="6 7" stroke-linecap="round"></path></svg>
+
+  <div style="position:absolute;left:520px;top:184px;width:440px;height:300px;transform:rotate(4deg);background:var(--paper);border:2.5px solid var(--ink);border-radius:12px;box-shadow:6px 6px 0 var(--p2),0 16px 28px var(--sh);overflow:hidden">
+    <div style="height:28px;background:var(--p3);border-bottom:2.5px solid var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 10px">
+      <span style="font-family:'Silkscreen',monospace;font-size:12px;color:#fff">♥ profile_01.txt</span>
+      <span style="display:flex;gap:4px;font-size:11px;line-height:15px"><span style="width:18px;height:16px;background:var(--paper);border:1.5px solid var(--ink);text-align:center">─</span><span style="width:18px;height:16px;background:var(--paper);border:1.5px solid var(--ink);text-align:center">□</span><span style="width:18px;height:16px;background:var(--mint);border:1.5px solid var(--ink);text-align:center">✕</span></span>
+    </div>
+    <div style="position:absolute;left:0;right:0;top:30px;bottom:0;background-image:repeating-linear-gradient(transparent 0 29px,var(--grid) 29px 30px)"></div>
+    <div data-slot="id-photo-a" style="position:absolute;left:20px;top:46px;width:130px;height:170px;background:#fff;padding:6px;box-sizing:border-box;transform:rotate(-4deg);box-shadow:3px 4px 0 var(--p1),0 6px 10px var(--sh)">
+      <div style="width:100%;height:100%;overflow:hidden;position:relative;background:linear-gradient(180deg,var(--p1),var(--p2))">
+        <sc-if value="{{ filled }}" hint-placeholder-val="{{ true }}">
+          <div style="position:absolute;left:31px;top:26px;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.92)"></div>
+          <div style="position:absolute;left:12px;top:90px;width:94px;height:80px;border-radius:47px 47px 0 0;background:rgba(255,255,255,.92)"></div>
+        </sc-if>
+        <sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;inset:4px;border:2px dashed #fff;display:flex;align-items:center;justify-content:center;font-family:'Gowun Batang',serif;font-weight:700;color:var(--ink);font-size:14px;text-align:center">+ 증명사진<br>118×158</div></sc-if>
+      </div>
+    </div>
+    <svg viewBox="0 0 28 60" style="position:absolute;left:34px;top:30px;width:22px;transform:rotate(-10deg)"><path d="M9 54V12a7 7 0 0 1 14 0v38a4 4 0 0 1-8 0V18" fill="none" stroke="var(--p3)" stroke-width="3.5" stroke-linecap="round"></path></svg>
+    <div style="position:absolute;left:170px;top:42px;right:16px;height:180px;display:flex;flex-direction:column;gap:5px;min-width:0">
+      <div style="display:flex;align-items:center;gap:6px;font-family:'Silkscreen',monospace;font-size:11px;color:var(--p3);letter-spacing:2px">NAME ♡ 01<span style="flex:1;border-top:2px dotted var(--p2)"></span></div>
+      <div data-slot="name-a" style="font-family:'Black Han Sans',sans-serif;font-size:50px;line-height:1.05;color:var(--p3);text-shadow:3px 3px 0 var(--p1);white-space:nowrap;overflow:hidden">{{ nameA }}</div>
+      <div data-slot="name-a-en" style="font-family:'Gowun Batang',serif;font-weight:700;font-size:18px;line-height:1.2;color:var(--ink)">{{ enA }}</div>
+      <div style="display:flex;align-items:flex-start;gap:6px;margin-top:4px">
+        <span style="flex:none;font-family:'Silkscreen',monospace;font-size:10px;background:var(--ink);color:#fff;padding:2px 6px;border-radius:4px;margin-top:2px">PROFILE</span>
+        <span data-slot="profile-a" style="font-size:15px;line-height:1.4;text-wrap:pretty">{{ profA }}</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:auto">
+        <span style="font-family:'Silkscreen',monospace;font-size:10px">LOVE</span>
+        <div style="flex:1;height:14px;border:2px solid var(--ink);border-radius:10px;background:#fff;padding:1px"><div style="width:82%;height:100%;border-radius:8px;background:repeating-linear-gradient(90deg,var(--p3) 0 10px,var(--p2) 10px 14px)"></div></div>
+        <span style="color:var(--p3);font-size:14px">♥</span>
+      </div>
+    </div>
+    <div style="position:absolute;left:20px;right:20px;top:232px;height:48px;display:flex;align-items:center">
+      <div data-slot="line-a" style="position:relative;flex:1;min-width:0;height:44px;box-sizing:border-box;background:#fff;border:2px solid var(--p3);border-radius:22px;padding:0 16px;display:flex;align-items:center;gap:8px;font-size:15px;box-shadow:3px 3px 0 var(--p1)">
+        <span style="font-family:'Pacifico';color:var(--p3);font-size:20px;line-height:1">“</span><span style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ lineA }}</span><span style="font-family:'Silkscreen';font-size:10px;color:var(--p3)">•••</span>
+        <span style="position:absolute;left:36px;top:-9px;width:14px;height:14px;background:#fff;border-left:2px solid var(--p3);border-top:2px solid var(--p3);transform:rotate(45deg)"></span>
+      </div>
+    </div>
+  </div>
+  <div style="position:absolute;left:528px;top:168px;width:110px;height:28px;transform:rotate(-12deg);background:repeating-linear-gradient(90deg,var(--p1) 0 8px,#fff 8px 16px);opacity:.95"></div>
+
+  <div style="position:absolute;left:566px;top:500px;width:440px;height:300px;transform:rotate(-3deg);background:var(--paper);border:2.5px solid var(--ink);border-radius:12px;box-shadow:6px 6px 0 var(--p2),0 16px 28px var(--sh);overflow:hidden">
+    <div style="height:28px;background:var(--p2);border-bottom:2.5px solid var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 10px">
+      <span style="font-family:'Silkscreen',monospace;font-size:12px;color:var(--ink)">♥ profile_02.txt</span>
+      <span style="display:flex;gap:4px;font-size:11px;line-height:15px"><span style="width:18px;height:16px;background:var(--paper);border:1.5px solid var(--ink);text-align:center">─</span><span style="width:18px;height:16px;background:var(--paper);border:1.5px solid var(--ink);text-align:center">□</span><span style="width:18px;height:16px;background:var(--p3);color:#fff;border:1.5px solid var(--ink);text-align:center">✕</span></span>
+    </div>
+    <div style="position:absolute;left:0;right:0;top:30px;bottom:0;background-image:repeating-linear-gradient(transparent 0 29px,var(--grid) 29px 30px)"></div>
+    <div data-slot="id-photo-b" style="position:absolute;left:20px;top:46px;width:130px;height:170px;background:#fff;padding:6px;box-sizing:border-box;transform:rotate(3deg);box-shadow:3px 4px 0 var(--p1),0 6px 10px var(--sh)">
+      <div style="width:100%;height:100%;overflow:hidden;position:relative;background:linear-gradient(180deg,var(--sub),var(--p1))">
+        <sc-if value="{{ filled }}" hint-placeholder-val="{{ true }}">
+          <div style="position:absolute;left:31px;top:26px;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.92)"></div>
+          <div style="position:absolute;left:12px;top:90px;width:94px;height:80px;border-radius:47px 47px 0 0;background:rgba(255,255,255,.92)"></div>
+        </sc-if>
+        <sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;inset:4px;border:2px dashed #fff;display:flex;align-items:center;justify-content:center;font-family:'Gowun Batang',serif;font-weight:700;color:var(--ink);font-size:14px;text-align:center">+ 증명사진<br>118×158</div></sc-if>
+      </div>
+    </div>
+    <div style="position:absolute;left:46px;top:34px;width:90px;height:24px;transform:rotate(-5deg);background:repeating-linear-gradient(90deg,var(--mint) 0 7px,#e6fff7 7px 14px);opacity:.92"></div>
+    <div style="position:absolute;left:170px;top:42px;right:16px;height:180px;display:flex;flex-direction:column;gap:5px;min-width:0">
+      <div style="display:flex;align-items:center;gap:6px;font-family:'Silkscreen',monospace;font-size:11px;color:var(--p3);letter-spacing:2px">NAME ♡ 02<span style="flex:1;border-top:2px dotted var(--p2)"></span></div>
+      <div data-slot="name-b" style="font-family:'Black Han Sans',sans-serif;font-size:50px;line-height:1.05;color:var(--p3);text-shadow:3px 3px 0 var(--p1);white-space:nowrap;overflow:hidden">{{ nameB }}</div>
+      <div data-slot="name-b-en" style="font-family:'Gowun Batang',serif;font-weight:700;font-size:18px;line-height:1.2;color:var(--ink)">{{ enB }}</div>
+      <div style="display:flex;align-items:flex-start;gap:6px;margin-top:4px">
+        <span style="flex:none;font-family:'Silkscreen',monospace;font-size:10px;background:var(--ink);color:#fff;padding:2px 6px;border-radius:4px;margin-top:2px">PROFILE</span>
+        <span data-slot="profile-b" style="font-size:15px;line-height:1.4;text-wrap:pretty">{{ profB }}</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:auto">
+        <span style="font-family:'Silkscreen',monospace;font-size:10px">LOVE</span>
+        <div style="flex:1;height:14px;border:2px solid var(--ink);border-radius:10px;background:#fff;padding:1px"><div style="width:100%;height:100%;border-radius:8px;background:repeating-linear-gradient(90deg,var(--p3) 0 10px,var(--p2) 10px 14px)"></div></div>
+        <span style="color:var(--p3);font-size:14px">♥</span>
+      </div>
+    </div>
+    <div style="position:absolute;left:20px;right:20px;top:232px;height:48px;display:flex;align-items:center">
+      <div data-slot="line-b" style="position:relative;flex:1;min-width:0;height:44px;box-sizing:border-box;background:var(--p1);border:2px solid var(--p3);border-radius:22px;padding:0 16px;display:flex;align-items:center;gap:8px;font-size:15px;box-shadow:3px 3px 0 #fff">
+        <span style="font-family:'Pacifico';color:var(--p3);font-size:20px;line-height:1">“</span><span style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ lineB }}</span><span style="font-family:'Silkscreen';font-size:10px;color:var(--p3)">•••</span>
+        <span style="position:absolute;left:36px;top:-9px;width:14px;height:14px;background:var(--p1);border-left:2px solid var(--p3);border-top:2px solid var(--p3);transform:rotate(45deg)"></span>
+      </div>
+    </div>
+  </div>
+  <div style="position:absolute;left:930px;top:486px;width:104px;height:28px;transform:rotate(18deg);background:repeating-linear-gradient(90deg,var(--sub) 0 9px,#fff6d6 9px 18px);opacity:.92"></div>
+
+  <div style="position:absolute;left:200px;top:866px;font-family:'Silkscreen',monospace;font-size:12px;letter-spacing:4px;color:var(--p3);transform:rotate(-2deg)">♥ FOREVER &amp; EVER ♥ 10TH AUTUMN ♥</div>
+
+  <div style="position:absolute;left:1030px;top:118px;width:318px;height:672px;transform:rotate(4deg);border-radius:48px;background:var(--p3);border:3px solid var(--ink);box-shadow:8px 10px 0 var(--p2),0 22px 34px var(--sh);padding:13px;box-sizing:border-box">
+    <div style="position:absolute;right:-9px;top:150px;width:6px;height:64px;border-radius:0 4px 4px 0;background:var(--p2);border:2px solid var(--ink);border-left:none"></div>
+    <div style="position:absolute;left:-9px;top:130px;width:6px;height:40px;border-radius:4px 0 0 4px;background:var(--p2);border:2px solid var(--ink);border-right:none"></div>
+    <div style="width:100%;height:100%;border-radius:36px;background:var(--paper);border:2.5px solid var(--ink);overflow:hidden;display:flex;flex-direction:column">
+      <div style="height:32px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;font-family:'Silkscreen',monospace;font-size:12px;flex:none">
+        <span>10:26</span><span style="width:78px;height:20px;border-radius:12px;background:var(--ink)"></span>
+        <span style="display:flex;gap:2px;align-items:flex-end"><span style="width:4px;height:6px;background:var(--ink)"></span><span style="width:4px;height:9px;background:var(--ink)"></span><span style="width:4px;height:12px;background:var(--ink)"></span><span style="width:20px;height:11px;border:1.5px solid var(--ink);border-radius:3px;margin-left:4px;padding:1px;box-sizing:border-box"><span style="display:block;width:80%;height:100%;background:var(--p3)"></span></span></span>
+      </div>
+      <div style="height:58px;flex:none;display:flex;align-items:center;gap:10px;padding:0 14px;background:#fff;border-bottom:2px solid var(--p1)">
+        <span style="font-family:'Gowun Batang',serif;font-weight:700;font-size:20px;color:var(--p3)">‹</span>
+        <div style="display:flex"><span style="width:34px;height:34px;border-radius:50%;background:linear-gradient(180deg,var(--p1),var(--p2));border:2px solid #fff;box-shadow:0 0 0 1.5px var(--p3)"></span><span style="width:34px;height:34px;border-radius:50%;background:linear-gradient(180deg,var(--sub),var(--p1));border:2px solid #fff;box-shadow:0 0 0 1.5px var(--p3);margin-left:-12px"></span></div>
+        <div style="flex:1;min-width:0">
+          <div data-slot="chat-title" style="font-family:'Gowun Batang',serif;font-weight:700;font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ chatTitle }}</div>
+          <div style="font-size:11px;display:flex;align-items:center;gap:4px"><span style="width:7px;height:7px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 1.5px var(--ink)"></span>대화 중 · DOPA</div>
+        </div>
+        <span style="font-family:'Silkscreen';font-size:14px">≡</span>
+      </div>
+      <div style="flex:none;display:flex;align-items:center;gap:6px;padding:6px 12px;background:var(--p3);color:#fff;font-size:11.5px"><span>✦</span><span style="flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ memory }}</span></div>
+      <div data-slot="chat" style="flex:1;padding:12px 12px 10px;display:flex;flex-direction:column;gap:9px;background-color:var(--bg);background-image:radial-gradient(var(--grid) 1.6px,transparent 2px);background-size:16px 16px;overflow:hidden">
+        <div style="align-self:center;font-family:'Silkscreen',monospace;font-size:10px;background:#fff;border:1.5px solid var(--p1);padding:2px 10px;border-radius:10px;letter-spacing:1px">TODAY · 10.26</div>
+        <sc-for list="{{ bubbles }}" as="b" hint-placeholder-count="4">
+          <sc-if value="{{ b.isA }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;gap:6px;align-items:flex-start;max-width:94%;opacity:{{ b.op }};transform:translateY({{ b.y }}px) scale({{ b.sc }});transform-origin:0 100%;transition:opacity .2s,transform .35s cubic-bezier(.3,1.7,.5,1)">
+              <span style="width:28px;height:28px;flex:none;border-radius:50%;background:linear-gradient(180deg,var(--p1),var(--p2));border:2px solid #fff;box-shadow:0 0 0 1.5px var(--p2)"></span>
+              <div style="display:flex;flex-direction:column;gap:3px;min-width:0">
+                <span style="align-self:flex-start;font-family:'Gowun Batang',serif;font-weight:700;font-size:10.5px;background:var(--p2);color:var(--ink);padding:1px 7px;border-radius:8px">{{ b.who }}</span>
+                <div style="display:flex;align-items:flex-end;gap:4px">
+                  <div style="background:#fff;border:2px solid var(--p2);border-radius:4px 16px 16px 16px;padding:7px 11px;font-size:14px;line-height:1.4;text-wrap:pretty;box-shadow:2px 2px 0 var(--p1)">{{ b.text }}</div>
+                  <span style="flex:none;font-size:9.5px;opacity:.8">{{ b.time }}</span>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ b.isB }}" hint-placeholder-val="{{ false }}">
+            <div style="align-self:flex-end;display:flex;gap:6px;align-items:flex-start;max-width:94%;opacity:{{ b.op }};transform:translateY({{ b.y }}px) scale({{ b.sc }});transform-origin:100% 100%;transition:opacity .2s,transform .35s cubic-bezier(.3,1.7,.5,1)">
+              <div style="display:flex;flex-direction:column;gap:3px;align-items:flex-end;min-width:0">
+                <span style="font-family:'Gowun Batang',serif;font-weight:700;font-size:10.5px;background:var(--mint);color:var(--ink);padding:1px 7px;border-radius:8px">{{ b.who }}</span>
+                <div style="display:flex;align-items:flex-end;gap:4px">
+                  <span style="flex:none;font-size:9.5px;opacity:.8">{{ b.time }}</span>
+                  <div style="background:var(--p3);color:#fff;border:2px solid var(--p3);border-radius:16px 4px 16px 16px;padding:7px 11px;font-size:14px;line-height:1.4;text-wrap:pretty;box-shadow:2px 2px 0 var(--p1)">{{ b.text }}</div>
+                </div>
+              </div>
+              <span style="width:28px;height:28px;flex:none;border-radius:50%;background:linear-gradient(180deg,var(--sub),var(--p1));border:2px solid #fff;box-shadow:0 0 0 1.5px var(--p2)"></span>
+            </div>
+          </sc-if>
+        </sc-for>
+        <div style="display:flex;gap:6px;align-items:center;opacity:{{ typingOp }};transition:opacity .2s">
+          <span style="width:28px;height:28px;flex:none;border-radius:50%;background:linear-gradient(180deg,var(--p1),var(--p2));border:2px solid #fff"></span>
+          <div style="background:#fff;border:2px solid var(--p2);border-radius:16px;padding:8px 12px;display:flex;gap:4px">
+            <span style="width:7px;height:7px;border-radius:50%;background:var(--p3);transform:translateY({{ ty1 }}px)"></span><span style="width:7px;height:7px;border-radius:50%;background:var(--p3);transform:translateY({{ ty2 }}px)"></span><span style="width:7px;height:7px;border-radius:50%;background:var(--p3);transform:translateY({{ ty3 }}px)"></span>
+          </div>
+        </div>
+      </div>
+      <div style="height:54px;flex:none;display:flex;align-items:center;gap:8px;padding:0 12px;background:#fff;border-top:2px solid var(--p1)">
+        <span style="width:28px;height:28px;border-radius:50%;background:var(--p1);display:flex;align-items:center;justify-content:center;font-family:'Gowun Batang',serif;font-weight:700;font-size:18px;color:var(--p3)">+</span>
+        <div style="flex:1;height:32px;border-radius:18px;background:var(--bg);border:1.5px solid var(--p1);display:flex;align-items:center;padding:0 12px;font-size:12.5px">메시지 보내기…</div>
+        <span style="width:32px;height:32px;border-radius:50%;background:var(--p3);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px">♥</span>
+      </div>
+    </div>
+  </div>
+  <div style="position:absolute;left:1050px;top:96px;width:120px;height:30px;transform:rotate(-14deg);background:repeating-linear-gradient(45deg,var(--p2) 0 7px,#fff 7px 14px);opacity:.92"></div>
+
+  <svg viewBox="0 0 1600 900" style="position:absolute;left:0;top:0;width:1600px;height:900px;pointer-events:none;overflow:visible;filter:drop-shadow(2px 3px 0 var(--sh))">
+    <path d="M1150 790C1150 860 1290 880 1370 818S1400 640 1384 500S1350 300 1314 200" fill="none" stroke="var(--ink)" stroke-width="8" stroke-linecap="round"></path>
+    <path d="M1384 500C1420 420 1440 330 1414 250" fill="none" stroke="var(--ink)" stroke-width="8" stroke-linecap="round"></path>
+    <path d="M1150 790C1150 860 1290 880 1370 818S1400 640 1384 500S1350 300 1314 200" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"></path>
+    <path d="M1384 500C1420 420 1440 330 1414 250" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"></path>
+    <rect x="1376" y="490" width="16" height="22" rx="5" fill="var(--p2)" stroke="var(--ink)" stroke-width="2.5"></rect>
+    <rect x="1140" y="778" width="20" height="26" rx="4" fill="var(--p2)" stroke="var(--ink)" stroke-width="2.5"></rect>
+    <g transform="rotate(-30 1310 186)"><rect x="1302" y="186" width="16" height="30" rx="7" fill="#fff" stroke="var(--ink)" stroke-width="2.5"></rect><circle cx="1310" cy="176" r="17" fill="#fff" stroke="var(--ink)" stroke-width="2.5"></circle><circle cx="1310" cy="176" r="8" fill="var(--p2)"></circle></g>
+    <g transform="rotate(20 1414 236)"><rect x="1406" y="236" width="16" height="30" rx="7" fill="#fff" stroke="var(--ink)" stroke-width="2.5"></rect><circle cx="1414" cy="226" r="17" fill="#fff" stroke="var(--ink)" stroke-width="2.5"></circle><circle cx="1414" cy="226" r="8" fill="var(--mint)"></circle></g>
+  </svg>
+
+  <div style="position:absolute;left:1408px;top:296px;width:176px;height:146px;transform:rotate(-4deg);background:var(--paper);border:2.5px solid var(--ink);border-radius:10px;box-shadow:4px 4px 0 var(--p2),0 10px 18px var(--sh);overflow:hidden">
+    <div style="height:22px;background:repeating-linear-gradient(0deg,var(--p1) 0 3px,var(--p2) 3px 5px);border-bottom:2px solid var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 6px">
+      <span style="font-family:'Silkscreen';font-size:10px;background:var(--paper);padding:0 4px">♪ player</span><span style="width:12px;height:12px;background:var(--p3);border:1.5px solid var(--ink);color:#fff;font-size:8px;line-height:11px;text-align:center">✕</span>
+    </div>
+    <div style="padding:10px 10px 0;display:flex;flex-direction:column;gap:8px">
+      <div data-slot="song" style="font-family:'Gowun Batang',serif;font-weight:700;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">♪ {{ song }}</div>
+      <div style="position:relative;height:8px;border-radius:6px;background:var(--p1);border:1.5px solid var(--ink)">
+        <div style="width:{{ prog }}%;height:100%;border-radius:6px;background:var(--p3)"></div>
+        <span style="position:absolute;top:-8px;left:{{ prog }}%;margin-left:-9px;font-size:16px;line-height:1;color:var(--p3);text-shadow:0 0 2px #fff">♥</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-family:'Silkscreen';font-size:9px"><span>0:{{ progSec }}</span><span>3:26</span></div>
+      <div style="display:flex;justify-content:center;gap:10px;align-items:center;font-size:13px">
+        <span>◀◀</span><span style="width:28px;height:28px;border-radius:50%;background:var(--p3);color:#fff;border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:11px">▶</span><span>▶▶</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="position:absolute;left:1404px;top:466px;width:180px;height:176px;transform:rotate(3.5deg);background:#fff;border:2.5px solid var(--ink);border-radius:8px;box-shadow:4px 4px 0 var(--p1),0 10px 18px var(--sh);background-image:repeating-linear-gradient(transparent 0 27px,var(--grid) 27px 28px);background-position:0 12px;padding:12px 12px;box-sizing:border-box;display:flex;flex-direction:column;gap:7px">
+    <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'Silkscreen';font-size:11px;color:var(--p3);letter-spacing:1px">TODAY LIST</span><span style="font-family:'Pacifico';font-size:13px;color:var(--p3)">for us</span></div>
+    <sc-for list="{{ todos }}" as="t" hint-placeholder-count="4">
+      <div style="display:flex;align-items:center;gap:7px;font-size:13.5px;line-height:1.3">
+        <span style="width:15px;height:15px;flex:none;border:2px solid var(--ink);border-radius:4px;background:{{ t.box }};color:var(--ink);font-size:11px;line-height:14px;text-align:center">{{ t.mark }}</span>
+        <span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ t.text }}</span>
+      </div>
+    </sc-for>
+  </div>
+  <div style="position:absolute;left:1460px;top:454px;width:76px;height:22px;transform:rotate(-6deg);background:repeating-linear-gradient(90deg,var(--p3) 0 6px,var(--p1) 6px 12px);opacity:.85"></div>
+
+  <div style="position:absolute;left:1414px;top:664px;width:100px;height:118px;transform:rotate(-7deg);background:#fff;padding:7px;box-sizing:border-box;border:2px dashed var(--p2);filter:drop-shadow(2px 3px 0 var(--sh))">
+    <div style="width:100%;height:100%;background:var(--p3);outline:2px dashed #fff;outline-offset:-5px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;gap:2px">
+      <span style="font-size:30px;line-height:1">♥</span>
+      <span style="font-family:'Black Han Sans';font-size:20px">1026</span>
+      <span style="font-family:'Silkscreen';font-size:8px;letter-spacing:1px">LOVE POST</span>
+    </div>
+  </div>
+
+
+  <div style="position:absolute;right:26px;bottom:8px;display:flex;align-items:center;gap:6px;background:#fff;border:2px solid var(--ink);border-radius:16px;padding:3px 12px 3px 5px;transform:rotate(-3deg);box-shadow:2px 2px 0 var(--p2)">
+    <span style="width:18px;height:18px;border-radius:50%;background:#d6336c;color:#fff;font-size:10px;line-height:18px;text-align:center">♥</span>
+    <span style="font-family:'Silkscreen',monospace;font-size:14px;letter-spacing:2px;color:#d6336c">DOPA</span>
+  </div>
+
+
+  <sc-if value="{{ showSlots }}" hint-placeholder-val="{{ false }}">
+    <sc-for list="{{ stickers }}" as="st" hint-placeholder-count="0">
+      <img data-slot="{{ st.id }}" src="{{ st.src }}" alt="" style="position:absolute;left:{{ st.x }}px;top:{{ st.y }}px;width:{{ st.w }}px;transform:translateY({{ st.dy }}px) rotate({{ st.r }}deg);transition:transform .3s ease-in-out;filter:drop-shadow(0 2px 3px rgba(80,20,40,.14));pointer-events:none">
+    </sc-for>
+  </sc-if>
+
+  <sc-for list="{{ doodles }}" as="d" hint-placeholder-count="0">
+    <svg viewBox="0 0 24 22" style="position:absolute;left:{{ d.x }}px;top:{{ d.y }}px;width:{{ d.w }}px;transform:rotate({{ d.r }}deg);overflow:visible"><path d="M12 21C5 15 1 11 1 6.5 1 3 3.6 1 6.5 1c2.3 0 4.3 1.3 5.5 3.3C13.2 2.3 15.2 1 17.5 1 20.4 1 23 3 23 6.5 23 11 19 15 12 21z" fill="none" stroke="var(--p3)" stroke-width="1.8" stroke-dasharray="3 3"></path></svg>
+  </sc-for>
+  <sc-for list="{{ sparkles }}" as="s" hint-placeholder-count="0">
+    <svg viewBox="0 0 24 24" style="position:absolute;left:{{ s.x }}px;top:{{ s.y }}px;width:{{ s.w }}px;opacity:{{ s.op }};transform:scale({{ s.sc }}) rotate({{ s.r }}deg);transition:opacity .25s,transform .25s;filter:drop-shadow(1px 1px 0 var(--ink))"><path d="M12 0C13 8 16 11 24 12 16 13 13 16 12 24 11 16 8 13 0 12 8 11 11 8 12 0z" fill="{{ s.c }}"></path></svg>
+  </sc-for>
+  <sc-for list="{{ hearts }}" as="h" hint-placeholder-count="0">
+    <svg viewBox="0 0 24 22" style="position:absolute;left:{{ h.x }}px;top:{{ h.y }}px;width:{{ h.w }}px;transform:translateY({{ h.dy }}px) rotate({{ h.r }}deg);transition:transform .3s ease-in-out"><path d="M12 21C5 15 1 11 1 6.5 1 3 3.6 1 6.5 1c2.3 0 4.3 1.3 5.5 3.3C13.2 2.3 15.2 1 17.5 1 20.4 1 23 3 23 6.5 23 11 19 15 12 21z" fill="{{ h.c }}" stroke="var(--ink)" stroke-width="1.6"></path></svg>
+  </sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1600,&quot;height&quot;:900},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;딸기우유&quot;,&quot;라벤더&quot;,&quot;체리&quot;],&quot;default&quot;:&quot;딸기우유&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;filled&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;animate&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;showStickerSlots&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { f: 0 };
+  rootRef = React.createRef();
+  static THEMES = {
+    '딸기우유': { bg:'#fff3f7', paper:'#fffaf2', grid:'#ffd9e5', p1:'#ffd3e1', p2:'#ff9fc0', p3:'#e8457c', ink:'#7a2244', sub:'#ffe7a3', mint:'#8fe3cb', berry:'#ff5d86', leaf:'#79c78a', sh:'rgba(122,34,68,.22)' },
+    '라벤더':   { bg:'#f8f3ff', paper:'#fdfaff', grid:'#e7dbfb', p1:'#e8dbff', p2:'#f4a6cf', p3:'#9256d6', ink:'#45286f', sub:'#ffd6ea', mint:'#9fe6d6', berry:'#f07cb0', leaf:'#8fd0b4', sh:'rgba(69,40,111,.22)' },
+    '체리':     { bg:'#fff0f3', paper:'#fff9f8', grid:'#ffd0da', p1:'#ffc2d1', p2:'#ff6f9c', p3:'#d61f45', ink:'#690e24', sub:'#ffe1e7', mint:'#86e0c4', berry:'#e8243f', leaf:'#5fb878', sh:'rgba(105,14,36,.24)' }
+  };
+  applyTheme() {
+    const t = Component.THEMES[this.props.theme] || Component.THEMES['딸기우유'];
+    const el = this.rootRef.current; if (!el) return;
+    Object.entries(t).forEach(([k, v]) => el.style.setProperty('--' + k, v));
+  }
+  componentDidMount() {
+    this.applyTheme();
+    this.timer = setInterval(() => { if (this.props.animate !== false) this.setState(s => ({ f: (s.f + 1) % 30 })); }, 200);
+  }
+  componentDidUpdate() { this.applyTheme(); }
+  componentWillUnmount() { clearInterval(this.timer); }
+  renderVals() {
+    const filled = this.props.filled !== false;
+    const anim = this.props.animate !== false;
+    const f = anim ? this.state.f : 29;
+    const D = filled ? {
+      title: 'HARU×IAN', script: 'Diary', relation: '# 소꿉친구 → 연인', caption: '2026.10.26 열 번째 가을',
+      nameA: '서하루', enA: 'Seo Haru', profA: '17세 · 제과부 부장 · 딸기 덕후', lineA: '딸기는 반으로 안 나눠 줄 거야.',
+      nameB: '윤이안', enB: 'Yoon Ian', profB: '17세 · 전교 1등 · 하루 전담', lineB: '그럼 내 것까지 다 먹어, 하루야.',
+      chatTitle: '하루 ♡ 이안', memory: '도파가 기억 중: 처음 만난 날 2016.10.26',
+      song: '열 번째 가을.mp3',
+      todos: [['같이 등교하기', 1], ['딸기 케이크 사기', 1], ['10주년 편지 쓰기', 0], ['고백 다시 하기', 0]],
+      chat: [['A','이안아, 오늘 무슨 날인지 알아?','10:24'],['B','처음 만난 지 딱 10년.','10:24'],['A','…진짜 기억하고 있었어?','10:25'],['B','너에 관한 건 하나도 안 잊어 ♡','10:26']]
+    } : {
+      title: '○○×○○', script: 'Diary', relation: '# 관계를 입력하세요', caption: '날짜 · 한 줄 캡션',
+      nameA: '이름', enA: 'Name', profA: '나이 · 직업 · 한 줄 프로필', lineA: '대표 대사 한 줄',
+      nameB: '이름', enB: 'Name', profB: '나이 · 직업 · 한 줄 프로필', lineB: '대표 대사 한 줄',
+      chatTitle: '○○ ♡ ○○', memory: '도파가 기억 중: 둘만의 설정 한 줄',
+      song: '노래 제목',
+      todos: [['할 일 1', 1], ['할 일 2', 1], ['할 일 3', 0], ['할 일 4', 0]],
+      chat: [['A','첫 번째 대사','00:00'],['B','두 번째 대사','00:00'],['A','세 번째 대사','00:00'],['B','네 번째 대사','00:00']]
+    };
+    const typed = Math.min(D.title.length, Math.round(D.title.length * f / 6));
+    const at = [6, 11, 16, 21];
+    const bubbles = D.chat.map(([w, text, time], i) => {
+      const on = f >= at[i];
+      return { isA: w === 'A', isB: w === 'B', who: w === 'A' ? D.nameA : D.nameB, text, time, op: on ? 1 : 0, y: on ? 0 : 14, sc: on ? 1 : .6 };
+    });
+    const pulse = k => (f + k) % 6 < 3 ? 1 : .3;
+    const bob = k => ((f + k) % 6 < 3 ? -3 : 0);
+    const sp = [[24,128,24],[580,150,20],[850,108,26],[1000,90,18],[1370,24,22],[1572,170,18],[530,860,22],[1010,700,20],[1350,850,18],[380,770,20],[1580,440,18],[30,560,24],[1386,640,16],[960,30,16],[490,474,18],[1340,280,14]];
+    const cols = ['var(--p3)','#fff','var(--mint)','var(--sub)'];
+    const sparkles = sp.map(([x, y, w], i) => { const on = (f + i * 7) % 10 < 5; return { x, y, w, c: cols[i % 4], op: on ? 1 : .35, sc: on ? 1 : .55, r: on ? 0 : 45 }; });
+    const hp = [[1376,250,20,'var(--p3)'],[1300,836,24,'var(--p2)'],[18,470,28,'var(--p3)'],[500,138,20,'#fff'],[1550,640,22,'#fff']];
+    const hearts = hp.map(([x, y, w, c], i) => ({ x, y, w, c, dy: Math.round(Math.sin((f / 30) * Math.PI * 2 + i) * 6), r: Math.round(Math.sin((f / 30) * Math.PI * 2 + i * 2) * 10) }));
+    const doodles = [[880,128,34,-10],[456,464,30,12],[1000,812,28,-8],[300,786,26,16],[1374,452,22,-14],[26,700,30,8]].map(([x,y,w,r]) => ({ x, y, w, r }));
+    const ss = [['pnew_002',1480,716,110,9],['4agu_002',14,150,78,-12],['13pw_001',230,140,92,0,'sway'],['8qjh_001',430,700,116,8,'bob'],['4agu_008',34,762,96,-6],['8qjhb_005',948,140,96,10,'bob'],['4agu_010',972,322,70,-8],['4agu_005',984,798,92,8],['pnew_001',540,800,430,-2],['ga9i_003',1368,92,76,8],['8qjh_002',1500,20,78,12,'bob'],['tdg3_012',1316,806,100,-4],['13pw_015',492,630,86,-10],['8qjhc_002',1500,170,74,-14],['ga9i_007',1196,816,104,-8],['4agu_009',600,452,62,-10],['tdg3_005',986,604,66,12]];
+    const stickers = ss.map(([src, x, y, w, r, mode], i) => ({ id: 'sticker-' + String(i + 1).padStart(2, '0'), src: 'stickers/' + src + '.png', x, y, w,
+      r: r + (mode === 'sway' ? Math.round(Math.sin((f / 30) * Math.PI * 2) * 6) : 0),
+      dy: mode === 'bob' ? Math.round(Math.sin((f / 30) * Math.PI * 2) * 5) : 0 }));
+    const prog = anim ? Math.round(18 + f * 1.6) : 52;
+    return {
+      rootRef: this.rootRef, filled, empty: !filled, showSlots: this.props.showStickerSlots !== false,
+      titleTyped: D.title.slice(0, typed), caretOp: f % 6 < 3 ? 1 : 0, script: D.script,
+      dot1: pulse(0), dot2: pulse(2), dot3: pulse(4),
+      relation: D.relation, caption: D.caption,
+      nameA: D.nameA, enA: D.enA, profA: D.profA, lineA: D.lineA,
+      nameB: D.nameB, enB: D.enB, profB: D.profB, lineB: D.lineB,
+      chatTitle: D.chatTitle, memory: D.memory, bubbles,
+      typingOp: f >= 24 ? 1 : 0, ty1: bob(0), ty2: bob(2), ty3: bob(4),
+      song: D.song, prog, progSec: String(Math.round(prog * 0.6)).padStart(2, '0'),
+      todos: D.todos.map(([text, done]) => ({ text, mark: done ? '✓' : '', box: done ? 'var(--mint)' : '#fff' })),
+      sparkles, hearts, doodles, stickers,
+      ribbonRot: Math.round(Math.sin((f / 30) * Math.PI * 2) * 6)
+    };
+  }
+}
+</script>
+</body>
+</html>
