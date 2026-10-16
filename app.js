@@ -171,11 +171,17 @@
     Object.entries(PHOTO_SLOTS).filter(([k]) => S.slots[k]).forEach(([k, l]) => {
       const lab = document.createElement("label"); lab.className = "photo"; lab.innerHTML = `<span>${l}</span>`;
       const inp = document.createElement("input"); inp.type = "file"; inp.accept = "image/*";
-      inp.addEventListener("change", () => { const f = inp.files && inp.files[0]; if (!f) return; const r = new FileReader(); r.onload = () => { S.photos[k] = r.result; render(); save(); buildPanel(); }; r.readAsDataURL(f); });
+      inp.addEventListener("change", () => { const f = inp.files && inp.files[0]; if (!f) return; const r = new FileReader(); r.onload = () => shrink(r.result, (url) => { S.photos[k] = url; render(); save(); buildPanel(); }); r.readAsDataURL(f); });
       lab.appendChild(inp);
       if (S.photos[k]) { const x = document.createElement("button"); x.type = "button"; x.textContent = "지우기"; x.addEventListener("click", (e) => { e.preventDefault(); delete S.photos[k]; render(); save(); buildPanel(); }); lab.appendChild(x); }
       ph.appendChild(lab);
     });
+  }
+  // 사진은 긴 변 1400px · WebP 로 줄여서 담는다 (10/17: 큰 사진은 기기 저장 한도를 넘어 새로고침하면 사진만 사라졌다 · WebP 라 투명 컷아웃도 그대로)
+  function shrink(src, done) {
+    const im = new Image();
+    im.onload = () => { const m = Math.max(im.width, im.height); const k = m > 1400 ? 1400 / m : 1; const c = document.createElement("canvas"); c.width = Math.round(im.width * k); c.height = Math.round(im.height * k); c.getContext("2d").drawImage(im, 0, 0, c.width, c.height); let u = ""; try { u = c.toDataURL("image/webp", 0.9); } catch (e) {} done(u && u.startsWith("data:image/webp") ? u : src); };
+    im.onerror = () => done(src); im.src = src;
   }
   async function buildDrawer() {
     let names = []; try { names = await (await fetch("stickers/index.json")).json(); } catch (e) {}
