@@ -122,7 +122,8 @@
   }
 
   // ── 화면 맞춤 ──
-  function fit() { const box = $("#stageBox"); const stg = $("#stage"); stg.style.width = W + "px"; stg.style.height = H + "px"; const sc = box.clientWidth / W; $("#stage").style.transform = `scale(${sc})`; box.style.height = `${H * sc}px`; S.scale = sc; }
+  // 크게 보기 (10/17 자기야: 폰에서 미리보기가 작아 잘 안 보였다) → 2배로 키우고 칸 안에서 손가락으로 둘러본다
+  function fit() { const box = $("#stageBox"); const stg = $("#stage"); stg.style.width = W + "px"; stg.style.height = H + "px"; const base = box.clientWidth / W; const z = S.zoom || 1; const sc = base * z; stg.style.transform = `scale(${sc})`; const zm = $("#zoomer"); zm.style.width = `${W * sc}px`; zm.style.height = `${H * sc}px`; box.style.height = `${z > 1 ? Math.min(H * sc, Math.max(H * base, window.innerHeight * 0.55)) : H * sc}px`; box.classList.toggle("zoomed", z > 1); S.scale = sc; }
 
   // ── 스티커 끌기 ──
   function setupDrag() {
@@ -228,6 +229,7 @@
     tp.addEventListener("change", async () => { S.tplKey = tp.value; S.sel = -1; await loadTemplate(TEMPLATES[S.tplKey][0]); fit(); buildPanel(); render(); syncTools(); save(); });
     $("#theme").addEventListener("change", (e) => { S.theme = e.target.value; render(); save(); });
     $("#anim").addEventListener("change", (e) => { S.animate = e.target.checked; render(); });
+    $("#zoom").addEventListener("click", () => { S.zoom = (S.zoom || 1) > 1 ? 1 : 2; $("#zoom").textContent = S.zoom > 1 ? "🔍 원래 크기" : "🔍 크게 보기"; fit(); });
     $("#png").addEventListener("click", exportPng); $("#gif").addEventListener("click", exportGif);
     $("#reset").addEventListener("click", () => { const ok = $("#resetOk"); ok.hidden = !ok.hidden; });
     $("#resetYes").addEventListener("click", () => { S.data = JSON.parse(JSON.stringify(window.PF_DEF)); S.stickers = JSON.parse(JSON.stringify(window.PF_SS)); S.stickersBy = { [S.tplKey]: S.stickers }; S.photos = {}; S.sel = -1; save(); buildPanel(); render(); $("#resetOk").hidden = true; });

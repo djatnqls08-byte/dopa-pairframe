@@ -19,7 +19,10 @@ body { margin:0; background:var(--bg); color:var(--ink); font-family:'Pretendard
 header { display:flex; align-items:center; gap:6px 14px; flex-wrap:wrap; }
 header h1 { margin:0; font-weight:800; font-size:1.9rem; line-height:1; color:var(--accent); letter-spacing:-.5px; }
 header p { margin:0; color:var(--muted); font-size:.95rem; line-height:1.4; padding-top:4px; }
-#stageBox { position:relative; width:100%; overflow:hidden; border-radius:14px; box-shadow:0 8px 30px rgba(122,34,68,.18); background:#fff; touch-action:none; }
+#stageBox { position:relative; width:100%; overflow:hidden; border-radius:14px; box-shadow:0 8px 30px rgba(122,34,68,.18); background:#fff; touch-action:auto; overscroll-behavior:contain; }
+#stageBox.zoomed { overflow:auto; }
+#zoomer { position:relative; }
+#canvas [data-st] { touch-action:none; }
 #stage { position:absolute; left:0; top:0; width:1600px; height:900px; transform-origin:0 0; }
 .bar { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
 .bar select, .bar button, .btn { font-family:inherit; font-weight:700; font-size:.95rem; padding:10px 16px; border-radius:12px; border:2px solid var(--line); background:var(--card); color:var(--ink); cursor:pointer; }
@@ -87,12 +90,13 @@ footer a { color:var(--accent2); font-weight:700; }
 
   <div class="editor">
   <div class="viewer">
-  <div id="stageBox"><div id="stage"><div id="canvas"></div></div></div>
+  <div id="stageBox"><div id="zoomer"><div id="stage"><div id="canvas"></div></div></div></div>
 
   <div class="bar">
     <select id="tpl" aria-label="틀 고르기"></select>
     <select id="theme" aria-label="색 테마"><option>딸기우유</option><option>라벤더</option><option>체리</option></select>
     <label><input type="checkbox" id="anim" checked> 움직임</label>
+    <button type="button" class="btn" id="zoom">🔍 크게 보기</button>
     <button type="button" class="btn main" id="png">PNG 저장</button>
     <button type="button" class="btn main" id="gif">GIF 저장<span class="long"> (움직이는 버전)</span></button>
     <button type="button" class="btn" id="reset">처음으로</button>
