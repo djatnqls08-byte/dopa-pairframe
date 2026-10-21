@@ -127,9 +127,7 @@ footer a { color:var(--accent2); font-weight:700; }
   </div>
   </div>
 
-  <!-- 텀블벅 알림 신청 버튼: 주소가 나오면 data-href 에 넣는다 (비어 있으면 숨김 · 10/17) -->
-  <a id="tumblbug" data-href="" target="_blank" rel="noopener" hidden style="align-self:center;display:inline-flex;align-items:center;gap:8px;padding:14px 22px;border-radius:14px;background:var(--accent);color:#fff;font-weight:800;font-size:1rem;text-decoration:none;box-shadow:0 6px 18px rgba(232,69,124,.3)">💌 도파 텀블벅 알림 신청하기 →</a>
-  <script>(() => { const a = document.getElementById('tumblbug'); const u = a.dataset.href; if (u) { a.href = u; a.hidden = false; } })();</script>
+ <a id="tumblbug" href="https://tumblbug.com/dopastudio" data-href="https://tumblbug.com/dopastudio" target="_blank" rel="noopener noreferrer" style="align-self:center;display:inline-flex;align-items:center;gap:8px;padding:14px 22px;border-radius:14px;background:var(--accent);color:#fff;font-weight:800;font-size:1rem;text-decoration:none;box-shadow:0 6px 18px rgba(232,69,124,.3);cursor:pointer">💌 도파 텀블벅 알림 신청하기 →</a>
   <footer>
     DOPA · 설정을 잊지 않는 AI 인터랙티브 채팅 웹<br>
     결과물은 자유롭게 자랑해 주세요 · 틀 자체의 재배포·자작 발언은 삼가 주세요
