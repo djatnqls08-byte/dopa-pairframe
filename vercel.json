@@ -1,0 +1,5 @@
+{
+  "redirects": [
+    { "source": "/(.*)", "destination": "https://dopa-tools.vercel.app/diary/", "permanent": false }
+  ]
+}
